@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crypto Miner: Space Adventure - Earn Points!</title>
+    <title>🎂 Happy Birthday!</title>
     <style>
         * {
             margin: 0;
@@ -15,111 +15,280 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Floating Balloons Background */
+        .balloons-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .balloon {
+            position: absolute;
+            bottom: -150px;
+            font-size: 40px;
+            animation: floatUp linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.7;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Confetti */
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            top: -10px;
+            animation: confettiFall linear infinite;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Main Content */
+        .main-content {
+            position: relative;
+            z-index: 10;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
             min-height: 100vh;
             padding: 20px;
         }
 
-        .game-container {
+        .card {
             background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            padding: 30px;
-            max-width: 800px;
+            border-radius: 30px;
+            padding: 40px;
+            max-width: 600px;
             width: 100%;
-        }
-
-        .game-header {
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
             text-align: center;
-            margin-bottom: 20px;
+            animation: slideIn 1s ease-out;
+            backdrop-filter: blur(10px);
         }
 
-        .game-title {
-            font-size: 2.5em;
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .birthday-emoji {
+            font-size: 80px;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .title {
+            font-size: 3em;
             color: #333;
+            margin: 20px 0 10px 0;
+            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .friend-name {
+            font-size: 2em;
+            color: #764ba2;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .stats-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        .stat-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 1.1em;
             font-weight: bold;
         }
 
-        .stat-icon {
-            font-size: 1.5em;
+        .message {
+            font-size: 1.2em;
+            color: #666;
+            line-height: 1.6;
+            margin: 20px 0;
+            font-style: italic;
         }
 
-        .game-canvas {
-            border: 3px solid #667eea;
-            border-radius: 10px;
-            display: block;
-            margin: 0 auto;
-            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
-            max-width: 100%;
+        .age-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 10px 30px;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 15px 0;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         }
 
-        .game-controls {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        /* Photo Gallery */
+        .photo-gallery {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 25px 0;
+        }
+
+        .photo-placeholder {
+            width: 120px;
+            height: 120px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .photo-placeholder:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .photo-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .photo-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            font-size: 0.7em;
+            padding: 5px;
+            border-radius: 0 0 15px 15px;
+        }
+
+        /* Buttons */
+        .button-group {
+            display: flex;
             gap: 15px;
-            margin-top: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 25px;
         }
 
         .btn {
-            padding: 12px 24px;
-            font-size: 1em;
+            padding: 15px 30px;
+            font-size: 1.1em;
             font-weight: bold;
             border: none;
-            border-radius: 8px;
+            border-radius: 50px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
             text-transform: uppercase;
             letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
         }
 
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         }
 
-        .btn-start {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+        .btn:active {
+            transform: translateY(-1px);
         }
 
-        .btn-shop {
+        .btn-cake {
             background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             color: white;
         }
 
-        .btn-upgrade {
+        .btn-music {
             background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             color: white;
         }
 
-        .btn-info {
+        .btn-message {
             background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
             color: white;
         }
 
+        /* Countdown */
+        .countdown {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .countdown-item {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 15px;
+            border-radius: 15px;
+            min-width: 70px;
+        }
+
+        .countdown-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .countdown-label {
+            font-size: 0.8em;
+            color: #666;
+            text-transform: uppercase;
+        }
+
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -139,700 +308,517 @@
 
         .modal-content {
             background: white;
-            margin: 5% auto;
+            margin: 10% auto;
             padding: 30px;
             border-radius: 20px;
             max-width: 500px;
             width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .close {
-            font-size: 2em;
-            cursor: pointer;
-            color: #999;
-        }
-
-        .close:hover {
-            color: #333;
-        }
-
-        .shop-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px;
-            margin: 10px 0;
-            background: #f5f5f5;
-            border-radius: 10px;
-            transition: all 0.3s;
-        }
-
-        .shop-item:hover {
-            background: #e0e0e0;
-            transform: translateX(5px);
-        }
-
-        .item-info {
-            flex: 1;
-        }
-
-        .item-name {
-            font-weight: bold;
-            font-size: 1.1em;
-            color: #333;
-        }
-
-        .item-desc {
-            color: #666;
-            font-size: 0.9em;
-            margin-top: 5px;
-        }
-
-        .item-price {
-            font-weight: bold;
-            color: #667eea;
-            margin-right: 15px;
-        }
-
-        .earn-methods {
-            background: #f9f9f9;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-
-        .earn-method {
-            display: flex;
-            align-items: center;
-            padding: 10px;
-            margin: 5px 0;
-            background: white;
-            border-radius: 8px;
-            border-left: 4px solid #667eea;
-        }
-
-        .game-over-screen {
             text-align: center;
-            padding: 20px;
         }
 
-        .game-over-score {
-            font-size: 3em;
-            color: #667eea;
-            font-weight: bold;
+        .modal textarea {
+            width: 100%;
+            height: 150px;
+            padding: 15px;
+            border: 2px solid #667eea;
+            border-radius: 15px;
+            font-size: 1em;
             margin: 20px 0;
+            resize: vertical;
+            font-family: inherit;
         }
 
-        .combo-indicator {
+        /* Cake Animation */
+        .cake-container {
+            position: relative;
+            margin: 30px auto;
+            width: 200px;
+            height: 200px;
+        }
+
+        .cake {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .cake-layer {
             position: absolute;
-            color: #ffd700;
-            font-weight: bold;
-            font-size: 1.5em;
-            pointer-events: none;
-            animation: floatUp 1s ease-out;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 10px;
         }
 
-        @keyframes floatUp {
-            from {
-                opacity: 1;
-                transform: translateY(0);
-            }
-            to {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
+        .cake-layer-1 {
+            width: 180px;
+            height: 50px;
+            background: linear-gradient(135deg, #f5576c, #f093fb);
+            bottom: 0;
         }
 
+        .cake-layer-2 {
+            width: 140px;
+            height: 50px;
+            background: linear-gradient(135deg, #f093fb, #667eea);
+            bottom: 40px;
+        }
+
+        .cake-layer-3 {
+            width: 100px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            bottom: 80px;
+        }
+
+        .candle {
+            position: absolute;
+            bottom: 130px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 40px;
+            background: #ffd700;
+            border-radius: 5px;
+        }
+
+        .flame {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 15px;
+            height: 25px;
+            background: #ff6b35;
+            border-radius: 50% 50% 20% 20%;
+            animation: flicker 0.5s infinite alternate;
+        }
+
+        @keyframes flicker {
+            from { transform: translateX(-50%) scale(1); }
+            to { transform: translateX(-50%) scale(1.1); }
+        }
+
+        /* Responsive */
         @media (max-width: 600px) {
-            .stats-bar {
-                flex-direction: column;
-                gap: 10px;
+            .card {
+                padding: 25px;
+                margin: 10px;
             }
-            
-            .game-title {
-                font-size: 1.8em;
+            .title {
+                font-size: 2em;
+            }
+            .friend-name {
+                font-size: 1.5em;
+            }
+            .photo-placeholder {
+                width: 80px;
+                height: 80px;
+                font-size: 35px;
+            }
+            .btn {
+                padding: 12px 20px;
+                font-size: 0.9em;
             }
         }
     </style>
 </head>
 <body>
-    <div class="game-container">
-        <div class="game-header">
-            <h1 class="game-title">🚀 Crypto Miner: Space Adventure</h1>
-            <p>Collect space gems and earn virtual coins!</p>
-        </div>
+    <!-- Animated Background Elements -->
+    <div class="balloons-container" id="balloonsContainer"></div>
+    <div class="confetti-container" id="confettiContainer"></div>
 
-        <div class="stats-bar">
-            <div class="stat-item">
-                <span class="stat-icon">💰</span>
-                <span>Coins: <span id="coins">0</span></span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-icon">⭐</span>
-                <span>Score: <span id="score">0</span></span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-icon">🎯</span>
-                <span>Level: <span id="level">1</span></span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-icon">💎</span>
-                <span>Gems: <span id="gems">0</span></span>
-            </div>
-        </div>
-
-        <canvas id="gameCanvas" class="game-canvas" width="700" height="400"></canvas>
-
-        <div class="game-controls">
-            <button class="btn btn-start" onclick="startGame()">🎮 Start Game</button>
-            <button class="btn btn-shop" onclick="openShop()">🛒 Shop</button>
-            <button class="btn btn-upgrade" onclick="openUpgrades()">⚡ Upgrades</button>
-            <button class="btn btn-info" onclick="openEarnInfo()">💡 How to Earn</button>
-        </div>
-    </div>
-
-    <!-- Shop Modal -->
-    <div id="shopModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>🛒 Shop</h2>
-                <span class="close" onclick="closeShop()">&times;</span>
-            </div>
-            <div id="shopItems"></div>
-        </div>
-    </div>
-
-    <!-- Upgrades Modal -->
-    <div id="upgradesModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>⚡ Upgrades</h2>
-                <span class="close" onclick="closeUpgrades()">&times;</span>
-            </div>
-            <div id="upgradeItems"></div>
-        </div>
-    </div>
-
-    <!-- How to Earn Modal -->
-    <div id="earnModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>💡 How to Earn Virtual Coins</h2>
-                <span class="close" onclick="closeEarnInfo()">&times;</span>
-            </div>
-            <div class="earn-methods">
-                <h3>🎮 In-Game Methods:</h3>
-                <div class="earn-method">
-                    <span>💎 Collect space gems during gameplay</span>
-                </div>
-                <div class="earn-method">
-                    <span>⭐ Reach high scores for bonus coins</span>
-                </div>
-                <div class="earn-method">
-                    <span>🎯 Complete daily challenges</span>
-                </div>
-                <div class="earn-method">
-                    <span>🏆 Win tournaments and events</span>
-                </div>
-                
-                <h3 style="margin-top: 20px;">💳 For Real Integration:</h3>
-                <div class="earn-method" style="background: #fff3cd;">
-                    <span>🔌 Integrate payment gateways (Stripe, PayPal)</span>
-                </div>
-                <div class="earn-method" style="background: #fff3cd;">
-                    <span>📱 Add rewarded video ads</span>
-                </div>
-                <div class="earn-method" style="background: #fff3cd;">
-                    <span>🏪 In-app purchases for virtual items</span>
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="card" id="mainCard">
+            <!-- Birthday Emoji -->
+            <div class="birthday-emoji">🎉</div>
+            
+            <!-- Title -->
+            <h1 class="title">Happy Birthday!</h1>
+            
+            <!-- Friend's Name - EDIT THIS -->
+            <h2 class="friend-name" id="friendName">[Your Friend's Name]</h2>
+            
+            <!-- Age Badge -->
+            <div class="age-badge" id="ageBadge">🎂 Today's Your Day!</div>
+            
+            <!-- Animated Cake -->
+            <div class="cake-container">
+                <div class="cake">
+                    <div class="cake-layer cake-layer-1"></div>
+                    <div class="cake-layer cake-layer-2"></div>
+                    <div class="cake-layer cake-layer-3"></div>
+                    <div class="candle">
+                        <div class="flame" id="flame"></div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <!-- Game Over Modal -->
-    <div id="gameOverModal" class="modal">
-        <div class="modal-content">
-            <div class="game-over-screen">
-                <h2>🎮 Game Over!</h2>
-                <div class="game-over-score">
-                    <span id="finalScore">0</span> points
+            
+            <!-- Personal Message -->
+            <p class="message" id="personalMessage">
+                Wishing you the happiest of birthdays! May your day be filled with joy, 
+                laughter, and all the things that make you smile. You deserve nothing 
+                but the best! 🎈
+            </p>
+            
+            <!-- Photo Gallery -->
+            <div class="photo-gallery" id="photoGallery">
+                <div class="photo-placeholder" onclick="showPhotoMessage('Best Memories! 📸')">
+                    🖼️
+                    <div class="photo-caption">Memory 1</div>
                 </div>
-                <p>Coins earned: <span id="coinsEarned">0</span> 💰</p>
-                <p>Gems collected: <span id="gemsCollected">0</span> 💎</p>
-                <button class="btn btn-start" onclick="restartGame()" style="margin-top: 20px;">
-                    🔄 Play Again
+                <div class="photo-placeholder" onclick="showPhotoMessage('Our Adventures! 🌟')">
+                    🎨
+                    <div class="photo-caption">Memory 2</div>
+                </div>
+                <div class="photo-placeholder" onclick="showPhotoMessage('Good Times! 🎊')">
+                    📷
+                    <div class="photo-caption">Memory 3</div>
+                </div>
+            </div>
+            
+            <!-- Countdown to Next Birthday -->
+            <div class="countdown" id="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days">--</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">--</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">--</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="button-group">
+                <button class="btn btn-cake" onclick="blowCandles()">
+                    🎂 Blow Candles
+                </button>
+                <button class="btn btn-music" onclick="toggleMusic()">
+                    🎵 Play Song
+                </button>
+                <button class="btn btn-message" onclick="openMessageModal()">
+                    💌 Leave Message
                 </button>
             </div>
         </div>
     </div>
 
+    <!-- Message Modal -->
+    <div id="messageModal" class="modal">
+        <div class="modal-content">
+            <h2>💌 Leave a Birthday Message</h2>
+            <textarea id="messageInput" placeholder="Write your birthday wishes here..."></textarea>
+            <button class="btn btn-message" onclick="sendMessage()">Send Message 🎈</button>
+            <button class="btn" onclick="closeMessageModal()" style="margin-top:10px; background:#999; color:white;">Close</button>
+        </div>
+    </div>
+
+    <!-- Hidden Audio Element -->
+    <audio id="birthdaySong" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
     <script>
-        // Game State
-        const canvas = document.getElementById('gameCanvas');
-        const ctx = canvas.getContext('2d');
-
-        let gameRunning = false;
-        let score = 0;
-        let coins = 0;
-        let gems = 0;
-        let level = 1;
-        let combo = 1;
-        let lives = 3;
-
-        // Player
-        let player = {
-            x: 350,
-            y: 350,
-            width: 40,
-            height: 40,
-            speed: 5,
-            color: '#00ff00'
-        };
-
-        // Game objects
-        let collectibles = [];
-        let obstacles = [];
-        let particles = [];
-
-        // Upgrades
-        let upgrades = {
-            speed: { level: 1, cost: 100, name: 'Speed Boost' },
-            magnet: { level: 1, cost: 150, name: 'Coin Magnet' },
-            shield: { level: 0, cost: 200, name: 'Shield' },
-            multiplier: { level: 1, cost: 250, name: 'Score Multiplier' }
-        };
-
-        // Shop items
-        let shopItems = [
-            { id: 1, name: 'Coin Pack', desc: '100 virtual coins', price: 1, coins: 100 },
-            { id: 2, name: 'Gem Pack', desc: '50 gems', price: 2, coins: 0, gems: 50 },
-            { id: 3, name: 'Lives Pack', desc: '+3 extra lives', price: 1, lives: 3 },
-            { id: 4, name: 'Premium Pack', desc: '500 coins + 100 gems', price: 5, coins: 500, gems: 100 }
+        // ==================== CONFIGURATION - EDIT THESE VALUES ====================
+        
+        // Your friend's information
+        const friendName = "Alex"; // Change to your friend's name
+        const friendAge = 25; // Change to your friend's age (or set to null)
+        const birthdayDate = new Date(2025, 5, 15); // Year, Month (0-11), Day - Set their next birthday
+        
+        // Personal message
+        const personalMessage = "Wishing you the happiest of birthdays! May your day be filled with joy, laughter, and all the things that make you smile. You deserve nothing but the best! 🎈";
+        
+        // Photo URLs (replace with actual image URLs or leave as null for placeholders)
+        const photoUrls = [
+            null, // Replace with 'https://example.com/photo1.jpg'
+            null, // Replace with 'https://example.com/photo2.jpg'
+            null  // Replace with 'https://example.com/photo3.jpg'
         ];
-
-        // Controls
-        let keys = {};
-
-        document.addEventListener('keydown', (e) => {
-            keys[e.key] = true;
-            if (!gameRunning && e.key === ' ') {
-                startGame();
+        
+        // Photo captions
+        const photoCaptions = [
+            "Best Memories! 📸",
+            "Our Adventures! 🌟",
+            "Good Times! 🎊"
+        ];
+        
+        // ==================== INITIALIZATION ====================
+        
+        // Update friend's name
+        document.getElementById('friendName').textContent = friendName;
+        
+        // Update age badge if provided
+        if (friendAge) {
+            document.getElementById('ageBadge').textContent = `🎂 Turning ${friendAge}!`;
+        }
+        
+        // Update personal message
+        document.getElementById('personalMessage').textContent = personalMessage;
+        
+        // Update photos if URLs provided
+        const photoElements = document.querySelectorAll('.photo-placeholder');
+        photoElements.forEach((element, index) => {
+            if (photoUrls[index]) {
+                const img = document.createElement('img');
+                img.src = photoUrls[index];
+                img.alt = `Memory ${index + 1}`;
+                element.innerHTML = '';
+                element.appendChild(img);
+                
+                const caption = document.createElement('div');
+                caption.className = 'photo-caption';
+                caption.textContent = photoCaptions[index];
+                element.appendChild(caption);
             }
         });
-
-        document.addEventListener('keyup', (e) => {
-            keys[e.key] = false;
-        });
-
-        // Touch controls for mobile
-        let touchX = null;
-        canvas.addEventListener('touchmove', (e) => {
-            e.preventDefault();
-            const rect = canvas.getBoundingClientRect();
-            touchX = e.touches[0].clientX - rect.left;
-        });
-
-        // Game Loop
-        function gameLoop() {
-            if (!gameRunning) return;
-
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            // Draw background
-            drawBackground();
-
-            // Update player position
-            updatePlayer();
-
-            // Update and draw collectibles
-            updateCollectibles();
-
-            // Update and draw obstacles
-            updateObstacles();
-
-            // Update and draw particles
-            updateParticles();
-
-            // Update UI
-            document.getElementById('score').textContent = score;
-            document.getElementById('coins').textContent = coins;
-            document.getElementById('level').textContent = level;
-            document.getElementById('gems').textContent = gems;
-
-            // Increase difficulty
-            if (score > level * 100) {
-                level++;
-                player.speed += 0.5;
-            }
-
-            requestAnimationFrame(gameLoop);
-        }
-
-        function drawBackground() {
-            // Starfield
-            for (let i = 0; i < 50; i++) {
-                const x = (i * 137 + Date.now() * 0.01) % canvas.width;
-                const y = (i * 97) % canvas.height;
-                ctx.fillStyle = '#ffffff';
-                ctx.fillRect(x, y, 2, 2);
+        
+        // ==================== BALLOONS ====================
+        
+        function createBalloons() {
+            const container = document.getElementById('balloonsContainer');
+            const balloonEmojis = ['🎈', '🎉', '🎊', '🎀', '💝', '🌟', '✨', '🎁'];
+            
+            for (let i = 0; i < 15; i++) {
+                const balloon = document.createElement('div');
+                balloon.className = 'balloon';
+                balloon.textContent = balloonEmojis[Math.floor(Math.random() * balloonEmojis.length)];
+                balloon.style.left = `${Math.random() * 100}%`;
+                balloon.style.fontSize = `${30 + Math.random() * 50}px`;
+                balloon.style.animationDuration = `${6 + Math.random() * 8}s`;
+                balloon.style.animationDelay = `${Math.random() * 5}s`;
+                container.appendChild(balloon);
+                
+                // Remove and recreate balloons
+                setTimeout(() => {
+                    balloon.remove();
+                    createBalloons();
+                }, (6 + Math.random() * 8) * 1000);
             }
         }
-
-        function updatePlayer() {
-            // Keyboard controls
-            if (keys['ArrowLeft'] || keys['a']) player.x -= player.speed;
-            if (keys['ArrowRight'] || keys['d']) player.x += player.speed;
-            if (keys['ArrowUp'] || keys['w']) player.y -= player.speed;
-            if (keys['ArrowDown'] || keys['s']) player.y += player.speed;
-
-            // Touch controls
-            if (touchX !== null) {
-                player.x += (touchX - player.x) * 0.1;
-            }
-
-            // Boundaries
-            player.x = Math.max(0, Math.min(canvas.width - player.width, player.x));
-            player.y = Math.max(0, Math.min(canvas.height - player.height, player.y));
-
-            // Draw player
-            ctx.fillStyle = player.color;
-            ctx.shadowBlur = 20;
-            ctx.shadowColor = player.color;
-            ctx.fillRect(player.x, player.y, player.width, player.height);
-            ctx.shadowBlur = 0;
-
-            // Draw player emoji
-            ctx.font = '30px Arial';
-            ctx.fillText('🚀', player.x + 5, player.y + 33);
-        }
-
-        function updateCollectibles() {
-            // Spawn collectibles
-            if (Math.random() < 0.02 + level * 0.005) {
-                collectibles.push({
-                    x: Math.random() * (canvas.width - 30),
-                    y: -30,
-                    width: 30,
-                    height: 30,
-                    speed: 2 + level * 0.5,
-                    type: Math.random() < 0.3 ? 'gem' : 'coin',
-                    wobble: Math.random() * Math.PI * 2
-                });
-            }
-
-            // Update collectibles
-            collectibles = collectibles.filter(item => {
-                item.y += item.speed;
-                item.x += Math.sin(item.wobble + Date.now() * 0.003) * 2;
-
-                // Check collision with player
-                if (checkCollision(player, item)) {
-                    if (item.type === 'coin') {
-                        coins += 10 * upgrades.multiplier.level;
-                        score += 10 * upgrades.multiplier.level;
-                    } else {
-                        gems += 5;
-                        score += 25 * upgrades.multiplier.level;
-                    }
+        
+        // ==================== CONFETTI ====================
+        
+        function createConfetti() {
+            const container = document.getElementById('confettiContainer');
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', '#dfe6e9', '#fd79a8', '#a29bfe'];
+            
+            setInterval(() => {
+                for (let i = 0; i < 5; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti-piece';
+                    confetti.style.left = `${Math.random() * 100}%`;
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.width = `${5 + Math.random() * 10}px`;
+                    confetti.style.height = `${5 + Math.random() * 10}px`;
+                    confetti.style.animationDuration = `${3 + Math.random() * 4}s`;
+                    confetti.style.animationDelay = `${Math.random() * 2}s`;
+                    container.appendChild(confetti);
                     
-                    // Create particle effect
-                    createParticles(item.x, item.y, item.type === 'gem' ? '#ffd700' : '#ffa500');
-                    
-                    // Combo system
-                    combo++;
-                    if (combo % 10 === 0) {
-                        coins += 50 * combo;
-                        showCombo(item.x, item.y);
+                    // Remove confetti after animation
+                    setTimeout(() => confetti.remove(), 5000);
+                }
+            }, 500);
+        }
+        
+        // ==================== COUNTDOWN ====================
+        
+        function updateCountdown() {
+            function calculateTimeLeft() {
+                const now = new Date();
+                let targetDate = new Date(birthdayDate);
+                
+                // If birthday has passed this year, set to next year
+                if (targetDate < now) {
+                    targetDate.setFullYear(targetDate.getFullYear() + 1);
+                }
+                
+                const difference = targetDate - now;
+                
+                if (difference <= 0) {
+                    return { days: 0, hours: 0, minutes: 0 };
+                }
+                
+                return {
+                    days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+                    hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+                    minutes: Math.floor((difference / 1000 / 60) % 60)
+                };
+            }
+            
+            function update() {
+                const timeLeft = calculateTimeLeft();
+                document.getElementById('days').textContent = timeLeft.days;
+                document.getElementById('hours').textContent = timeLeft.hours;
+                document.getElementById('minutes').textContent = timeLeft.minutes;
+            }
+            
+            update();
+            setInterval(update, 60000);
+        }
+        
+        // ==================== INTERACTIVE FEATURES ====================
+        
+        function blowCandles() {
+            const flame = document.getElementById('flame');
+            flame.style.opacity = '0';
+            flame.style.transition = 'opacity 0.5s';
+            
+            // Create sparkle effect
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    createSparkle();
+                }, i * 100);
+            }
+            
+            // Relight after 3 seconds
+            setTimeout(() => {
+                flame.style.opacity = '1';
+            }, 3000);
+            
+            // Play sound effect
+            playSound('blow');
+        }
+        
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.textContent = '✨';
+            sparkle.style.cssText = `
+                position: fixed;
+                left: 50%;
+                top: 40%;
+                font-size: 30px;
+                pointer-events: none;
+                animation: sparkleAnimation 1s ease-out forwards;
+                z-index: 1000;
+            `;
+            
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes sparkleAnimation {
+                    0% {
+                        opacity: 1;
+                        transform: translate(0, 0) scale(1);
                     }
-
-                    return false;
-                }
-
-                // Remove if off screen
-                if (item.y > canvas.height) {
-                    combo = 1;
-                    return false;
-                }
-
-                // Draw collectible
-                ctx.font = '25px Arial';
-                ctx.fillText(item.type === 'gem' ? '💎' : '💰', item.x, item.y);
-
-                return true;
-            });
-        }
-
-        function updateObstacles() {
-            // Spawn obstacles
-            if (Math.random() < 0.01 + level * 0.003 && upgrades.shield.level === 0) {
-                obstacles.push({
-                    x: Math.random() * (canvas.width - 40),
-                    y: -40,
-                    width: 40,
-                    height: 40,
-                    speed: 1.5 + level * 0.3
-                });
-            }
-
-            // Update obstacles
-            obstacles = obstacles.filter(obstacle => {
-                obstacle.y += obstacle.speed;
-
-                // Check collision with player
-                if (checkCollision(player, obstacle)) {
-                    if (upgrades.shield.level > 0) {
-                        upgrades.shield.level--;
-                        createParticles(obstacle.x, obstacle.y, '#00ffff');
-                    } else {
-                        lives--;
-                        createParticles(obstacle.x, obstacle.y, '#ff0000');
-                        
-                        if (lives <= 0) {
-                            gameOver();
-                        }
+                    100% {
+                        opacity: 0;
+                        transform: translate(${(Math.random() - 0.5) * 200}px, ${-Math.random() * 200}px) scale(0);
                     }
-                    return false;
                 }
-
-                // Remove if off screen
-                if (obstacle.y > canvas.height) return false;
-
-                // Draw obstacle
-                ctx.font = '35px Arial';
-                ctx.fillText('☄️', obstacle.x, obstacle.y);
-
-                return true;
-            });
-        }
-
-        function createParticles(x, y, color) {
-            for (let i = 0; i < 10; i++) {
-                particles.push({
-                    x: x,
-                    y: y,
-                    vx: (Math.random() - 0.5) * 5,
-                    vy: (Math.random() - 0.5) * 5,
-                    life: 1,
-                    color: color
-                });
-            }
-        }
-
-        function updateParticles() {
-            particles = particles.filter(p => {
-                p.x += p.vx;
-                p.y += p.vy;
-                p.life -= 0.02;
-
-                ctx.fillStyle = p.color;
-                ctx.globalAlpha = p.life;
-                ctx.fillRect(p.x, p.y, 5, 5);
-                ctx.globalAlpha = 1;
-
-                return p.life > 0;
-            });
-        }
-
-        function showCombo(x, y) {
-            const indicator = document.createElement('div');
-            indicator.className = 'combo-indicator';
-            indicator.style.left = x + 'px';
-            indicator.style.top = y + 'px';
-            indicator.textContent = `${combo}x COMBO!`;
-            document.body.appendChild(indicator);
+            `;
+            document.head.appendChild(style);
+            document.body.appendChild(sparkle);
             
-            setTimeout(() => indicator.remove(), 1000);
+            setTimeout(() => {
+                sparkle.remove();
+                style.remove();
+            }, 1000);
         }
-
-        function checkCollision(rect1, rect2) {
-            return rect1.x < rect2.x + rect2.width &&
-                   rect1.x + rect1.width > rect2.x &&
-                   rect1.y < rect2.y + rect2.height &&
-                   rect1.y + rect1.height > rect2.y;
-        }
-
-        function startGame() {
-            gameRunning = true;
-            score = 0;
-            coins = 0;
-            gems = 0;
-            level = 1;
-            combo = 1;
-            lives = 3;
-            collectibles = [];
-            obstacles = [];
-            particles = [];
-            player.x = 350;
-            player.y = 350;
-            
-            document.getElementById('gameOverModal').style.display = 'none';
-            gameLoop();
-        }
-
-        function gameOver() {
-            gameRunning = false;
-            
-            // Calculate earnings
-            const coinsEarned = Math.floor(score / 10);
-            coins += coinsEarned;
-            
-            document.getElementById('finalScore').textContent = score;
-            document.getElementById('coinsEarned').textContent = coinsEarned;
-            document.getElementById('gemsCollected').textContent = gems;
-            document.getElementById('gameOverModal').style.display = 'block';
-            
-            // Save to localStorage
-            saveGameData();
-        }
-
-        function restartGame() {
-            startGame();
-        }
-
-        function saveGameData() {
-            const gameData = {
-                coins: coins,
-                gems: gems,
-                highScore: Math.max(score, parseInt(localStorage.getItem('highScore') || 0)),
-                upgrades: upgrades,
-                lastSaved: new Date().toISOString()
-            };
-            localStorage.setItem('gameData', JSON.stringify(gameData));
-        }
-
-        function loadGameData() {
-            const saved = localStorage.getItem('gameData');
-            if (saved) {
-                const data = JSON.parse(saved);
-                coins = data.coins || 0;
-                gems = data.gems || 0;
-                upgrades = data.upgrades || upgrades;
-            }
-        }
-
-        // Shop Functions
-        function openShop() {
-            const shopDiv = document.getElementById('shopItems');
-            shopDiv.innerHTML = '';
-            
-            shopItems.forEach(item => {
-                const itemDiv = document.createElement('div');
-                itemDiv.className = 'shop-item';
-                itemDiv.innerHTML = `
-                    <div class="item-info">
-                        <div class="item-name">${item.name}</div>
-                        <div class="item-desc">${item.desc}</div>
-                    </div>
-                    <div class="item-price">$${item.price}</div>
-                    <button class="btn btn-shop" onclick="purchaseItem(${item.id})">
-                        Buy
-                    </button>
-                `;
-                shopDiv.appendChild(itemDiv);
-            });
-            
-            document.getElementById('shopModal').style.display = 'block';
-        }
-
-        function purchaseItem(itemId) {
-            const item = shopItems.find(i => i.id === itemId);
-            if (!item) return;
-
-            // Simulate purchase (in real app, integrate payment here)
-            if (confirm(`Simulate purchase of ${item.name} for $${item.price}?`)) {
-                // Add virtual items
-                if (item.coins) coins += item.coins;
-                if (item.gems) gems += item.gems;
-                if (item.lives) lives += item.lives;
-                
-                saveGameData();
-                alert(`Purchased ${item.name}! Items added to your account.`);
-            }
-        }
-
-        // Upgrade Functions
-        function openUpgrades() {
-            const upgradeDiv = document.getElementById('upgradeItems');
-            upgradeDiv.innerHTML = '';
-            
-            Object.entries(upgrades).forEach(([key, upgrade]) => {
-                const nextCost = upgrade.cost * (upgrade.level + 1);
-                const itemDiv = document.createElement('div');
-                itemDiv.className = 'shop-item';
-                itemDiv.innerHTML = `
-                    <div class="item-info">
-                        <div class="item-name">${upgrade.name} (Level ${upgrade.level})</div>
-                        <div class="item-desc">Next upgrade cost: ${nextCost} coins</div>
-                    </div>
-                    <button class="btn btn-upgrade" onclick="purchaseUpgrade('${key}')">
-                        Upgrade (${nextCost} 💰)
-                    </button>
-                `;
-                upgradeDiv.appendChild(itemDiv);
-            });
-            
-            document.getElementById('upgradesModal').style.display = 'block';
-        }
-
-        function purchaseUpgrade(upgradeKey) {
-            const upgrade = upgrades[upgradeKey];
-            const cost = upgrade.cost * (upgrade.level + 1);
-            
-            if (coins >= cost) {
-                coins -= cost;
-                upgrade.level++;
-                
-                // Apply upgrade effects
-                switch(upgradeKey) {
-                    case 'speed':
-                        player.speed += 1;
-                        break;
-                    case 'magnet':
-                        // Implement magnet effect
-                        break;
-                    case 'multiplier':
-                        // Multiplier already applied in collection
-                        break;
-                }
-                
-                saveGameData();
-                openUpgrades(); // Refresh display
+        
+        let musicPlaying = false;
+        function toggleMusic() {
+            const audio = document.getElementById('birthdaySong');
+            if (musicPlaying) {
+                audio.pause();
+                musicPlaying = false;
             } else {
-                alert('Not enough coins! Keep playing to earn more.');
+                audio.play().catch(e => console.log('Audio play failed:', e));
+                musicPlaying = true;
             }
         }
-
-        function openEarnInfo() {
-            document.getElementById('earnModal').style.display = 'block';
-        }
-
-        // Close modals
-        function closeShop() { document.getElementById('shopModal').style.display = 'none'; }
-        function closeUpgrades() { document.getElementById('upgradesModal').style.display = 'none'; }
-        function closeEarnInfo() { document.getElementById('earnModal').style.display = 'none'; }
-
-        // Close modals when clicking outside
-        window.onclick = function(event) {
-            const modals = document.getElementsByClassName('modal');
-            for (let modal of modals) {
-                if (event.target === modal) {
-                    modal.style.display = 'none';
+        
+        function playSound(type) {
+            // Simple sound using Web Audio API
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                if (type === 'blow') {
+                    oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+                    oscillator.frequency.exponentialRampToValueAtTime(200, audioContext.currentTime + 0.5);
+                    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
                 }
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.5);
+            } catch (e) {
+                console.log('Sound not supported');
             }
         }
-
-        // Initialize
-        loadGameData();
-        document.getElementById('coins').textContent = coins;
+        
+        function showPhotoMessage(message) {
+            alert(message);
+        }
+        
+        // ==================== MESSAGE SYSTEM ====================
+        
+        function openMessageModal() {
+            document.getElementById('messageModal').style.display = 'block';
+        }
+        
+        function closeMessageModal() {
+            document.getElementById('messageModal').style.display = 'none';
+        }
+        
+        function sendMessage() {
+            const message = document.getElementById('messageInput').value;
+            if (message.trim()) {
+                // Store message in localStorage
+                const messages = JSON.parse(localStorage.getItem('birthdayMessages') || '[]');
+                messages.push({
+                    text: message,
+                    timestamp: new Date().toISOString()
+                });
+                localStorage.setItem('birthdayMessages', JSON.stringify(messages));
+                
+                // Show confirmation
+                alert('Your birthday message has been saved! 🎉');
+                document.getElementById('messageInput').value = '';
+                closeMessageModal();
+            } else {
+                alert('Please write a message first! 💌');
+            }
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('messageModal');
+            if (event.target === modal) {
+                closeMessageModal();
+            }
+        }
+        
+        // ==================== START EVERYTHING ====================
+        
+        createBalloons();
+        createConfetti();
+        updateCountdown();
+        
+        // Add keyboard shortcut for candles
+        document.addEventListener('keydown', (e) => {
+            if (e.key === ' ' || e.code === 'Space') {
+                e.preventDefault();
+                blowCandles();
+            }
+        });
+        
+        console.log('🎂 Happy Birthday App is Ready!');
+        console.log('💡 Tips:');
+        console.log('  - Press SPACE to blow out the candles');
+        console.log('  - Edit the configuration at the top of the script');
+        console.log('  - Replace photo URLs with real images');
+        console.log('  - Share this page with your friend!');
     </script>
 </body>
 </html>
